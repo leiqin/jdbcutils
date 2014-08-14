@@ -1,0 +1,19 @@
+#.gitignore
+
+target/
+*.class
+
+# Package Files #
+*.war
+*.ear
+
+# vim swap file
+*.swp
+tags
+.project
+.classpath
+.settings/
+
+# some local file
+local/
+/bin
