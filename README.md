@@ -1,5 +1,7 @@
 ## 使用方法
 
+参考 src/test/java/name/leiqin/jdbc/JDBCUtilsTest.java
+
 ### 建表：
 
 	JDBCUtils.update(conn, "DROP TABLE IF EXISTS test_bean");
