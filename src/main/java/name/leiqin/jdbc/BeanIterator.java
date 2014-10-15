@@ -87,27 +87,41 @@ public class BeanIterator<T> implements Iterator<T> {
 				continue;
 			}
 
-			Class<?> clazz = pd.getPropertyType();
-			if (clazz == boolean.class || clazz == Boolean.class) {
-				value = rs.getBoolean(i + 1);
-			} else if (clazz == int.class || clazz == Integer.class) {
-				value = rs.getInt(i + 1);
-			} else if (clazz == long.class || clazz == Long.class) {
-				value = rs.getLong(i + 1);
-			} else if (clazz == double.class || clazz == Double.class) {
-				value = rs.getDouble(i + 1);
-			} else if (clazz == BigDecimal.class) {
-				value = rs.getBigDecimal(i + 1);
-			} else if (clazz == Date.class) {
-				Timestamp ts = rs.getTimestamp(i + 1);
-				value = new Date(ts.getTime());
-			} else if (clazz == Calendar.class) {
-				Timestamp ts = rs.getTimestamp(i + 1);
-				Calendar cal = Calendar.getInstance();
-				cal.setTime(ts);
-				value = cal;
+			try {
+				Class<?> clazz = pd.getPropertyType();
+				if (clazz == boolean.class || clazz == Boolean.class) {
+					value = rs.getBoolean(i + 1);
+				} else if (clazz == int.class || clazz == Integer.class) {
+					value = rs.getInt(i + 1);
+				} else if (clazz == long.class || clazz == Long.class) {
+					value = rs.getLong(i + 1);
+				} else if (clazz == double.class || clazz == Double.class) {
+					value = rs.getDouble(i + 1);
+				} else if (clazz == BigDecimal.class) {
+					value = rs.getBigDecimal(i + 1);
+				} else if (clazz == Date.class) {
+					Timestamp ts = rs.getTimestamp(i + 1);
+					value = new Date(ts.getTime());
+				} else if (clazz == Calendar.class) {
+					Timestamp ts = rs.getTimestamp(i + 1);
+					Calendar cal = Calendar.getInstance();
+					cal.setTime(ts);
+					value = cal;
+				} else if (clazz == String.class) {
+					value = rs.getString(i + 1);
+				}
+			} catch (Exception e) {
+				String msg = "get " + name + " from sql error";
+				throw new RuntimeException(msg, e);
 			}
-			JDBCUtils.setProperty(bean, name, value);
+			try {
+				JDBCUtils.setProperty(bean, name, value);
+			} catch (Exception e) {
+				String msg = "setProperty " + name + " error , ";
+				msg += value.getClass().getName() + " ";
+				msg += value.toString();
+				throw new RuntimeException(msg, e);
+			}
 		}
 		return bean;
 	}
