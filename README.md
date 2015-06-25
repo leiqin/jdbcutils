@@ -37,3 +37,19 @@
 		// TODO
 	}
 
+
+## 引用依赖
+
+使用 https://jitpack.io/ 解决对此项目的依赖
+
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+
+	<dependency>
+	    <groupId>com.github.leiqin</groupId>
+	    <artifactId>jdbcutils</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
