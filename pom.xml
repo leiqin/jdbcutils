@@ -17,7 +17,7 @@
 	<distributionManagement>
 		<repository>
 			<id>ssh-leiqin-aws</id>
-			<url>scpexe://aws.leiqin.info/home/leiqin/maven</url>
+			<url>scpexe://ssh.leiqin.info/srv/maven</url>
 		</repository>
 	</distributionManagement>
 	<dependencies>
