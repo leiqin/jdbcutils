@@ -50,6 +50,6 @@
 	<dependency>
 	    <groupId>com.github.leiqin</groupId>
 	    <artifactId>jdbcutils</artifactId>
-	    <version>1.0</version>
+	    <version>1.0.1</version>
 	</dependency>
 
