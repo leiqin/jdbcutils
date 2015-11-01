@@ -3,7 +3,7 @@ package name.leiqin.jdbc;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -58,7 +58,7 @@ public class MapIterator implements Iterator<Map<String, Object>> {
 		if (rsmd == null)
 			rsmd = rs.getMetaData();
 		int count = rsmd.getColumnCount();
-		Map<String, Object> result = new HashMap<>(count);
+		Map<String, Object> result = new LinkedHashMap<>(count);
 		for (int i = 0; i < count; i++) {
 			String name = rsmd.getColumnLabel(i + 1);
 			if (name == null || name.trim().length() == 0)
